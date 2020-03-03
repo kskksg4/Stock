@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Stock</string>
+    <string name="main_store_text">영업중인 가게를 찾기</string>
 </resources>

@@ -16,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".store.StoreActivity" />
+        <activity android:name=".storeLocation.StoreLocationActivity" />
     </application>
 
 </manifest>
