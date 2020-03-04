@@ -44,7 +44,20 @@ dependencies {
     // Rx
     implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
     implementation "io.reactivex.rxjava2:rxjava:2.1.9"
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
 
     // Gson
     implementation 'com.google.code.gson:gson:2.8.5'
+
+    // Retrofit2
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+    // OkHttp3
+    implementation 'com.squareup.okhttp3:okhttp:4.0.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.0.1'
+    implementation 'com.squareup.okhttp3:okhttp-urlconnection:4.0.1'
+
+    // koin
+    implementation 'org.koin:koin-android:2.0.1'
 }
