@@ -58,6 +58,10 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:4.0.1'
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:4.0.1'
 
-    // koin
+    // Koin
     implementation 'org.koin:koin-android:2.0.1'
+
+    // Google map api & location
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
 }
