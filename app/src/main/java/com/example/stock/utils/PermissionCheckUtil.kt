@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.DialogFragment
 
 const val REQUEST_CODE = 500
