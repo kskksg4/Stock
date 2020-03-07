@@ -13,19 +13,28 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProviders
 import com.example.stock.R
+import com.example.stock.adapter.StoreAdapter
+import com.example.stock.api.JSONApi
+import com.example.stock.bean.ResultBean
 import com.example.stock.databinding.StoreLocationActivityBinding
 import com.example.stock.utils.*
 import com.example.stock.utils.isPermissionGranted
 import com.example.stock.utils.requestPermission
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.location.*
+import org.koin.android.ext.android.inject
 
 @SuppressLint("Registered")
-class StoreLocationActivity : BaseActivity<StoreLocationActivityBinding>() {
+class StoreLocationActivity : BaseActivity<StoreLocationActivityBinding>(), StoreAdapter.OnItemClickListener {
 
     override val layoutResourceId = R.layout.store_location_activity
 
-    lateinit var viewModel: StoreLocationViewModel
+    private val api: JSONApi by inject()
+
+    private val adapter = StoreAdapter().apply { setClickListener(this@StoreLocationActivity) }
+
+    private lateinit var viewModel: StoreLocationViewModel
+    private lateinit var viewModelFactory: StoreLocationViewModelFactory
 
     private var fusedLocationClient: FusedLocationProviderClient? = null
     private var isNetworkLocation: Boolean = false
@@ -37,7 +46,8 @@ class StoreLocationActivity : BaseActivity<StoreLocationActivityBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(StoreLocationViewModel::class.java)
+        viewModelFactory = StoreLocationViewModelFactory(adapter, api)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(StoreLocationViewModel::class.java)
         viewDataBinding.viewModel = viewModel
         viewDataBinding.lifecycleOwner = this
 
@@ -58,6 +68,13 @@ class StoreLocationActivity : BaseActivity<StoreLocationActivityBinding>() {
         }
     }
 
+    override fun onClick(bean: ResultBean?) {
+        // intent 추가
+        if (bean != null) {
+            showToast("${bean.isstock}")
+        }
+    }
+
     private fun checkMyPermissionLocation(){
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestPermission(this)
@@ -71,7 +88,9 @@ class StoreLocationActivity : BaseActivity<StoreLocationActivityBinding>() {
             super.onLocationResult(result)
 
             currentLocation = result!!.locations[0]
-            viewModel.devText.set("${currentLocation.latitude}, ${currentLocation.longitude}")
+            viewModel.lat.set(currentLocation.latitude)
+            viewModel.lng.set(currentLocation.longitude)
+            viewModel.loadData()
             Log.d("location", "${currentLocation.latitude}, ${currentLocation.longitude}")
         }
     }

@@ -35,7 +35,7 @@ class StoreActivity : BaseActivity<StoreActivityBinding>(), StoreAdapter.OnItemC
     override fun onClick(bean: ResultBean?) {
         // intent 추가
         if (bean != null) {
-            showToast(bean.address)
+            showToast("${bean.isstock}")
         }
     }
 }

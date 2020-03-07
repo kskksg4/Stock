@@ -15,7 +15,7 @@ import io.reactivex.schedulers.Schedulers
 
 class StoreViewModel(private val storeAdapter: StoreAdapter, private val api: JSONApi) : BaseViewModel(){
 
-    var devText: ObservableField<String> = ObservableField("devText")
+    private val stockList = mutableListOf<ResultBean>()
 
     private val _adapter = MutableLiveData<StoreAdapter>().apply { value = storeAdapter }
     private val _items = MutableLiveData<List<ResultBean>>()
@@ -42,8 +42,16 @@ class StoreViewModel(private val storeAdapter: StoreAdapter, private val api: JS
 //                    hideProgress()
                 }
                 .subscribe({ data ->
-                    _items.value = data.result
-                    Log.d("_items", _items.value!![0].address)
+                    var i = 0
+
+                    for (element in data.result){
+                        if (element.isstock == 1){
+                            stockList.add(i, element)
+                            i++
+                        }
+                    }
+
+                    _items.value = stockList
                 }, {
                         error -> Log.e("Error", error.message)
                 })
