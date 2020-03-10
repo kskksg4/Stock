@@ -1,5 +1,6 @@
 package com.example.stock.api
 
+import com.example.stock.bean.DetailBean
 import com.example.stock.bean.StoreBean
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -15,4 +16,9 @@ interface JSONApi {
         @Query("lat") lat: Double?,
         @Query("lng") lng: Double?
     ): Observable<StoreBean>
+
+    @GET("detail_dev.php")
+    fun getDetailStore(
+        @Query("id") id: Int
+    ): Observable<DetailBean>
 }

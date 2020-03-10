@@ -1,6 +1,7 @@
 package com.example.stock.store
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
 import com.example.stock.R
@@ -8,6 +9,7 @@ import com.example.stock.adapter.StoreAdapter
 import com.example.stock.api.JSONApi
 import com.example.stock.bean.ResultBean
 import com.example.stock.databinding.StoreActivityBinding
+import com.example.stock.storeDetail.DetailActivity
 import com.example.stock.utils.BaseActivity
 import org.koin.android.ext.android.inject
 
@@ -33,9 +35,12 @@ class StoreActivity : BaseActivity<StoreActivityBinding>(), StoreAdapter.OnItemC
     }
 
     override fun onClick(bean: ResultBean?) {
-        // intent 추가
+
+        val intent = Intent(this, DetailActivity::class.java)
+
         if (bean != null) {
-            showToast("${bean.isstock}")
+            intent.putExtra(DetailActivity.KEY_ID, bean.id)
+            startActivity(intent)
         }
     }
 }

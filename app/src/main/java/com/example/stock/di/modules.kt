@@ -1,7 +1,7 @@
 package com.example.stock.di
 
 import com.example.stock.api.JSONApi
-import com.example.stock.constant.TEST_URL_STORE
+import com.example.stock.constant.TEST_URL
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -15,7 +15,7 @@ val apiModule = module{
     single {
 
         Retrofit.Builder()
-            .baseUrl(TEST_URL_STORE)
+            .baseUrl(TEST_URL)
             .client(get())
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

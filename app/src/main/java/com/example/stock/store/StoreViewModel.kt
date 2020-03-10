@@ -1,9 +1,6 @@
 package com.example.stock.store
 
-import android.app.Application
 import android.util.Log
-import androidx.databinding.ObservableField
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.stock.adapter.StoreAdapter
@@ -14,8 +11,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class StoreViewModel(private val storeAdapter: StoreAdapter, private val api: JSONApi) : BaseViewModel(){
-
-    private val stockList = mutableListOf<ResultBean>()
 
     private val _adapter = MutableLiveData<StoreAdapter>().apply { value = storeAdapter }
     private val _items = MutableLiveData<List<ResultBean>>()
@@ -42,16 +37,7 @@ class StoreViewModel(private val storeAdapter: StoreAdapter, private val api: JS
 //                    hideProgress()
                 }
                 .subscribe({ data ->
-                    var i = 0
-
-                    for (element in data.result){
-                        if (element.isstock == 1){
-                            stockList.add(i, element)
-                            i++
-                        }
-                    }
-
-                    _items.value = stockList
+                    _items.value = data.result
                 }, {
                         error -> Log.e("Error", error.message)
                 })

@@ -14,7 +14,7 @@ import com.example.stock.databinding.ItemStoreBinding;
 
 import java.util.List;
 
-public class StoreAdapter extends RecyclerView .Adapter<StoreAdapter.StoreHolder>{
+public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreHolder>{
 
     private List<ResultBean> items;
     private OnItemClickListener listener;
