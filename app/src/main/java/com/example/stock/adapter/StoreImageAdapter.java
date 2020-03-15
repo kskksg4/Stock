@@ -1,6 +1,5 @@
 package com.example.stock.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,13 +27,9 @@ public class StoreImageAdapter extends RecyclerView.Adapter<StoreImageAdapter.St
     public StoreImageHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         Toast.makeText(parent.getContext(), "count: "+count, Toast.LENGTH_SHORT).show();
-        if (count == 3){
-            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_store_image, parent, false);
+        itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_store_image, parent, false);
 
-            return new StoreImageHolder(itemView);
-        }
-
-        return null;
+        return new StoreImageHolder(itemView);
     }
 
     @Override
@@ -66,14 +61,14 @@ public class StoreImageAdapter extends RecyclerView.Adapter<StoreImageAdapter.St
     }
 
     public interface OnItemClickListener{
-        void onClick(DetailImageBean bean);
+        void onClick(String url);
     }
 
     class StoreImageHolder extends RecyclerView.ViewHolder{
 
         ItemStoreImageBinding binding;
 
-        public StoreImageHolder(@NonNull View itemView) {
+        StoreImageHolder(@NonNull View itemView) {
             super(itemView);
 
             binding = DataBindingUtil.bind(itemView);

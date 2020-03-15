@@ -47,9 +47,7 @@ class DetailActivity : BaseActivity<DetailActivityBinding>(), StoreImageAdapter.
         viewModel.loadData(storeId)
     }
 
-    override fun onClick(bean: DetailImageBean?) {
-        if (bean != null) {
-            showToast(bean.imgUrl1)
-        }
+    override fun onClick(url: String?) {
+        showToast("$url")
     }
 }

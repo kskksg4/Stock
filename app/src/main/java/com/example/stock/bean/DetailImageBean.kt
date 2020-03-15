@@ -10,5 +10,8 @@ data class DetailImageBean(
     val imgUrl2: String,
 
     @SerializedName("imgUrl3")
-    val imgUrl3: String
+    val imgUrl3: String,
+
+    @SerializedName("imgUrl4")
+    val imgUrl4: String
 )
