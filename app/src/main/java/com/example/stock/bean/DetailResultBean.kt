@@ -19,5 +19,11 @@ data class DetailResultBean(
     val name: String,
 
     @SerializedName("tel")
-    val tel: Int
+    val tel: Int,
+
+    @SerializedName("comment")
+    val comment: String,
+
+    @SerializedName("businessHour")
+    val businessOur: String
 )

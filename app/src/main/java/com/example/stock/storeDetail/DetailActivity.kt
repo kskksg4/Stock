@@ -1,6 +1,8 @@
 package com.example.stock.storeDetail
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
 import com.example.stock.R
@@ -8,7 +10,10 @@ import com.example.stock.adapter.StoreImageAdapter
 import com.example.stock.api.JSONApi
 import com.example.stock.bean.DetailImageBean
 import com.example.stock.databinding.DetailActivityBinding
+import com.example.stock.rxevent.RxEvent
 import com.example.stock.utils.BaseActivity
+import com.example.stock.utils.RxBus
+import io.reactivex.disposables.Disposable
 import org.koin.android.ext.android.inject
 
 @SuppressLint("Registered")
@@ -39,6 +44,12 @@ class DetailActivity : BaseActivity<DetailActivityBinding>(), StoreImageAdapter.
         viewDataBinding.lifecycleOwner = this
 
         getIdFromIntent()
+
+        addDisposable(RxBus.listen(RxEvent.EventSendNumber::class.java)
+            .subscribe {
+                val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${it.telNumber}"))
+                startActivity(intent)
+        })
     }
 
     private fun getIdFromIntent(){

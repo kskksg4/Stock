@@ -7,7 +7,9 @@ import com.example.stock.adapter.StoreImageAdapter
 import com.example.stock.api.JSONApi
 import com.example.stock.bean.DetailImageBean
 import com.example.stock.bean.DetailResultBean
+import com.example.stock.rxevent.RxEvent
 import com.example.stock.utils.BaseViewModel
+import com.example.stock.utils.RxBus
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -22,12 +24,13 @@ class DetailViewModel(private val storeImageAdapter: StoreImageAdapter, private 
     val name = MutableLiveData<String>()
     val address = MutableLiveData<String>()
     val menuPr = MutableLiveData<String>()
+    val tel = MutableLiveData<String>()
+    val comment = MutableLiveData<String>()
+    val businessOur = MutableLiveData<String>()
 
     val adapter: LiveData<StoreImageAdapter> get() = _adapter
     val imgArrays: LiveData<List<DetailImageBean>> get() = _img_arr
     val count: LiveData<Int> get() = _img_cnt
-
-
 
     var list = ArrayList<String>()
 
@@ -57,9 +60,16 @@ class DetailViewModel(private val storeImageAdapter: StoreImageAdapter, private 
                     name.value = _items.value!![0].name
                     address.value = _items.value!![0].address
                     menuPr.value = _items.value!![0].menuPr
+                    tel.value = "0${_items.value!![0].tel}"
+                    comment.value = _items.value!![0].comment
+                    businessOur.value = _items.value!![0].businessOur
                 }, {
                     error -> Log.e("Error", error.message)
                 })
         )
+    }
+
+    fun sendTelNumber(){
+        RxBus.publish(RxEvent.EventSendNumber(tel.value!!))
     }
 }

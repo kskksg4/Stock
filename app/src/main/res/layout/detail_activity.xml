@@ -17,6 +17,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:overScrollMode="never"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +52,7 @@
                             android:textSize="25sp"
                             android:textStyle="bold"
                             android:text="@{viewModel.name}"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="20dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -64,49 +65,104 @@
                             android:gravity="center"
                             android:textSize="15sp"
                             android:layout_marginTop="40dp"
+                            android:layout_marginBottom="20dp"
                             android:text="@{viewModel.address}"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView5"
-                            tools:text="Address Lorem ipsum" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="10dp"
-                            android:gravity="center"
-                            android:text="@{viewModel.menuPr}"
-                            android:textSize="15sp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView7"
-                            tools:text="Lorem ipsum" />
+                            tools:text="Address Lorem ipsum" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
+                    android:id="@+id/recyclerView"
+                    android:layout_width="0dp"
                     android:layout_height="310dp"
-                    android:overScrollMode="never"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
+                    android:overScrollMode="never"
                     app:bind_imgAdapter="@{viewModel.adapter}"
                     app:bind_imgs="@{viewModel.imgArrays}"
                     app:imgs_count="@{viewModel.count}"
                     app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/detailCardView"
+                    app:layout_constraintStart_toStartOf="@+id/detailCardView"
                     app:layout_constraintTop_toBottomOf="@+id/detailCardView" />
 
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="7dp"
+                    app:cardElevation="5dp"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/recyclerView"
+                    app:layout_constraintEnd_toEndOf="@+id/recyclerView">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="@{viewModel.menuPr}"
+                            android:textSize="15sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Lorem ipsum" />
+
+                        <TextView
+                            android:id="@+id/textView9"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="@{viewModel.businessOur}"
+                            android:layout_marginTop="20dp"
+                            app:layout_constraintTop_toBottomOf="@+id/textView6"
+                            app:layout_constraintStart_toStartOf="@+id/textView6"
+                            app:layout_constraintEnd_toEndOf="@+id/textView6"/>
+
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@{viewModel.comment}"
+                            android:layout_marginTop="40dp"
+                            android:lineSpacingExtra="10dp"
+                            android:textSize="15sp"
+                            app:layout_constraintTop_toBottomOf="@+id/textView9"
+                            app:layout_constraintStart_toStartOf="@+id/textView9"
+                            app:layout_constraintEnd_toEndOf="@+id/textView9"
+                            tools:text="@string/test_text"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:layout_marginTop="40dp"
+                            android:layout_marginBottom="20dp"
+                            android:text="@string/call"
+                            android:textColor="#03A9F4"
+                            android:gravity="center"
+                            android:onClick="@{()->viewModel.sendTelNumber()}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView8"
+                            app:layout_constraintStart_toStartOf="@id/textView8"
+                            app:layout_constraintEnd_toEndOf="@+id/textView8" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </ScrollView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
