@@ -1,5 +1,6 @@
 package com.example.stock.utils
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -18,6 +19,7 @@ abstract class BaseActivity<T: ViewDataBinding> : AppCompatActivity() {
     private val compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         super.onCreate(savedInstanceState)
 
         viewDataBinding = DataBindingUtil.setContentView(this, layoutResourceId)

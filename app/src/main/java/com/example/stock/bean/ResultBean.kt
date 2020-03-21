@@ -16,5 +16,11 @@ data class ResultBean(
     val lng: Double,
 
     @SerializedName("name")
-    val name: String
+    val name: String,
+
+    @SerializedName("thumComment")
+    val thumComment: String,
+
+    @SerializedName("thumImg")
+    val thumImg: String
 )

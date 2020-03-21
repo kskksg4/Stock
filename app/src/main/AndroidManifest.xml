@@ -27,6 +27,7 @@
         <activity android:name=".store.StoreActivity" />
         <activity android:name=".storeLocation.StoreLocationActivity" />
         <activity android:name=".storeDetail.DetailActivity" />
+        <activity android:name=".imageDetail.DetailImageActivity" />
     </application>
 
 </manifest>

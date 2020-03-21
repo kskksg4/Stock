@@ -1,5 +1,6 @@
 package com.example.stock.mainView
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,8 @@ class MainStoreFragment : Fragment() {
     lateinit var bind: MainStoreFragmentBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
         bind = MainStoreFragmentBinding.inflate(inflater, container, false)
         bind.lifecycleOwner = this
         viewModel = ViewModelProviders.of(requireActivity()).get(MainStoreViewModel::class.java)

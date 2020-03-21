@@ -10,6 +10,7 @@ import com.example.stock.adapter.StoreImageAdapter
 import com.example.stock.api.JSONApi
 import com.example.stock.bean.DetailImageBean
 import com.example.stock.databinding.DetailActivityBinding
+import com.example.stock.imageDetail.DetailImageActivity
 import com.example.stock.rxevent.RxEvent
 import com.example.stock.utils.BaseActivity
 import com.example.stock.utils.RxBus
@@ -59,6 +60,11 @@ class DetailActivity : BaseActivity<DetailActivityBinding>(), StoreImageAdapter.
     }
 
     override fun onClick(url: String?) {
-        showToast("$url")
+//        showToast("$url")
+
+        val intent = Intent(this, DetailImageActivity::class.java)
+
+        intent.putExtra(DetailImageActivity.KEY_URL, url)
+        startActivity(intent)
     }
 }
