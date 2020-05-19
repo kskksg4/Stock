@@ -15,6 +15,7 @@ import com.example.stock.rxevent.RxEvent
 import com.example.stock.utils.BaseActivity
 import com.example.stock.utils.RxBus
 import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.store_activity.*
 import org.koin.android.ext.android.inject
 
 @SuppressLint("Registered")
@@ -45,6 +46,10 @@ class DetailActivity : BaseActivity<DetailActivityBinding>(), StoreImageAdapter.
         viewDataBinding.lifecycleOwner = this
 
         getIdFromIntent()
+
+        btn_back.setOnClickListener {
+            finish()
+        }
 
         addDisposable(RxBus.listen(RxEvent.EventSendNumber::class.java)
             .subscribe {

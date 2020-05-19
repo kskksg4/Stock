@@ -11,6 +11,7 @@ import com.example.stock.bean.ResultBean
 import com.example.stock.databinding.StoreActivityBinding
 import com.example.stock.storeDetail.DetailActivity
 import com.example.stock.utils.BaseActivity
+import kotlinx.android.synthetic.main.store_activity.*
 import org.koin.android.ext.android.inject
 
 @SuppressLint("Registered")
@@ -32,6 +33,10 @@ class StoreActivity : BaseActivity<StoreActivityBinding>(), StoreAdapter.OnItemC
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(StoreViewModel::class.java)
         viewDataBinding.viewModel = viewModel
         viewDataBinding.lifecycleOwner = this
+
+        btn_back.setOnClickListener {
+            finish()
+        }
     }
 
     override fun onClick(bean: ResultBean?) {

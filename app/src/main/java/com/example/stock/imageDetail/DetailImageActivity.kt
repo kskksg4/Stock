@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.stock.R
 import com.example.stock.databinding.ImageActivityBinding
 import com.example.stock.utils.BaseActivity
+import kotlinx.android.synthetic.main.store_activity.*
 
 @SuppressLint("Registered")
 class DetailImageActivity() : BaseActivity<ImageActivityBinding>() {
@@ -29,6 +30,10 @@ class DetailImageActivity() : BaseActivity<ImageActivityBinding>() {
         viewDataBinding.lifecycleOwner = this
 
         getUrlFromIntent()
+
+        btn_back.setOnClickListener {
+            finish()
+        }
     }
 
     private fun getUrlFromIntent(){

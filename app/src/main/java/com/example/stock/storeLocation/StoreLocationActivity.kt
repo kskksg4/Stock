@@ -22,6 +22,7 @@ import com.example.stock.utils.isPermissionGranted
 import com.example.stock.utils.requestPermission
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.location.*
+import kotlinx.android.synthetic.main.store_activity.*
 import org.koin.android.ext.android.inject
 
 @SuppressLint("Registered")
@@ -50,6 +51,10 @@ class StoreLocationActivity : BaseActivity<StoreLocationActivityBinding>(), Stor
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(StoreLocationViewModel::class.java)
         viewDataBinding.viewModel = viewModel
         viewDataBinding.lifecycleOwner = this
+
+        btn_back.setOnClickListener {
+            finish()
+        }
 
         val mListener = getSystemService(Context.LOCATION_SERVICE) as? LocationManager
         if( mListener != null){
